@@ -1,0 +1,357 @@
+$(document).ready(function(){
+
+
+    /**************************************************************** CONTROLEUR DES AVIS */
+
+    okprenom = false;
+    oknom = false; 
+    okemail = false;
+    okcommentaire = false;
+    $('#prenom').on('input',prenom);
+    
+    
+    function prenom()
+            {
+               
+              if(this.value.length > 20 || this.value.length == 0)
+                {
+                    $('#prenom').css('border-color',"red");
+                    $('#timeprenom').css('display','inline');
+                    $('#checkprenom').css('display','none');
+                    $('#ctrlprenom').css('display','inline');
+                    okprenom = false; 
+                }
+                else
+                {
+                    $('#prenom').css('border-color',"green");
+                    $('#timeprenom').css('display','none');
+                    $('#checkprenom').css('display','inline');
+                    $('#ctrlprenom').css('display','none');  
+                    okprenom = true;                  
+                }
+            }
+
+            $('#nom').on('input',nom);
+    
+    
+            function nom()
+                    {
+                      if(this.value.length > 20 || this.value.length == 0)
+                        {
+                            $('#nom').css('border-color',"red");
+                            $('#timenom').css('display','inline');
+                            $('#checknom').css('display','none');
+                            $('#ctrlnom').css('display','inline');
+                            oknom = false; 
+                        }
+                        else
+                        {
+                            $('#nom').css('border-color',"green");
+                            $('#timenom').css('display','none');
+                            $('#checknom').css('display','inline');
+                            $('#ctrlnom').css('display','none');   
+                            oknom = true;                 
+                        }
+                    }
+
+                    $('#email').on('input',email);
+
+                    function email()
+                    {
+                      var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    
+                      if(regex.test(this.value) )
+                      {
+                        this.style.borderColor="green";
+                        document.getElementById('ctrl').style.color = 'green';
+                        document.getElementById('ctrlemail').style.display = 'none';
+                        okemail = true;
+                      }
+                      else
+                      {
+                        this.style.borderColor="red";
+                        document.getElementById('ctrl').style.color = 'red';
+                        document.getElementById('ctrlemail').style.display = 'inline';
+                        okemail = false;
+                      }
+    
+                    }
+
+                            $('#commentaire').on('input',commentaire);
+                        function commentaire()
+                                            {
+                                            if(this.value.length == 0)
+                                                {
+                                                    $('#commentaire').css('border-color',"red");
+                                                    $('#ctrlcommentaire').css('display','inline');
+                                                    okcommentaire = false; 
+                                                }
+                                                else
+                                                {
+                                                    $('#commentaire').css('border-color',"lightgrey");
+                                                    $('#ctrlcommentaire').css('display','none');   
+                                                    okcommentaire = true;                 
+                                                }
+                                            }
+
+
+                    $('#submit').on('click',afficher);
+                    //document.getElementById('formulaire').addEventListener('onclick',afficher);
+
+                    function afficher(event)
+                {
+
+
+
+                  event.preventDefault();
+
+
+                  if(okprenom == true && oknom == true && okemail == true && okcommentaire == true ){
+
+                    var prenom =            document.getElementById('prenom').value;
+                    var nom =          document.getElementById('nom').value;
+                    var email = document.getElementById('email').value;
+                    var type = document.getElementById('type').value;
+                    var commentaire = document.getElementById('commentaire').value;
+                    location.reload();
+                    alert("Merci pour votre avis ! \n Voici les information que vous avez saisis. \n Prenom : " +prenom+" Nom : "+nom+" Email : "+email+" Type : "+type+" Email : "+email+" Commentaire : "+commentaire );
+                }
+                    else{
+                            alert("Au moins un élément n'est pas valide")
+                    }
+
+                }
+
+
+                /****************************************** CHAMBRE */
+
+
+
+                $('#classique').click(function(){
+
+
+                    
+                    $('#chambreconfort').slideUp(1000);
+                    $('#chambredeluxe').slideUp(1000);
+                    $('#suite').slideUp(1000);
+                    
+                    $('#chambreclassique').slideDown(1000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#menuchambre").offset().top - 90
+                      }, 1000);
+                });
+                
+                $('#confort').click(function(){
+                    
+                    $('#chambreclassique').slideUp(1000);
+                    $('#chambredeluxe').slideUp(1000);
+                    $('#suite').slideUp(1000); 
+                    
+                    $('#chambreconfort').slideDown(1000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#menuchambre").offset().top - 90
+                      }, 1000);
+                });
+
+                $('#deluxe').click(function(){
+                    
+                    $('#chambreclassique').slideUp(1000);
+                    $('#chambreconfort').slideUp(1000);
+                    $('#suite').slideUp(1000); 
+                    
+                    $('#chambredeluxe').slideDown(1000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#menuchambre").offset().top - 90
+                      }, 1000);
+                });
+
+                $('#chambresuite').click(function(){
+                    
+                    $('#chambreclassique').slideUp(1000);
+                    $('#chambreconfort').slideUp(1000);
+                    $('#chambredeluxe').slideUp(1000); 
+                    
+                    $('#suite').slideDown(1000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#menuchambre").offset().top - 90
+                      }, 1000);
+                });
+
+                $('#tout').click(function(){
+                    
+                    $('#chambreclassique').slideDown(1000);
+                    $('#chambreconfort').slideDown(1000);
+                    $('#chambredeluxe').slideDown(1000); 
+                    $('#suite').slideDown(1000);
+
+                    $('html, body').animate({
+                        scrollTop: $("#menuchambre").offset().top - 90
+                      }, 1000);
+                });
+
+
+
+/****************************************** SPA */
+
+                    $('#sdetente').click(function(){
+                                        
+                        $('#decouverte').slideUp(1000);
+                        $('#relaxant').slideUp(1000);
+                        $('#plaisir').slideUp(1000);
+                        $('#evasion').slideUp(1000);
+                        
+                        $('#detente').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+
+                    });
+
+                    $('#sdecouverte').click(function(){
+                                        
+                        $('#detente').slideUp(1000);
+                        $('#relaxant').slideUp(1000);
+                        $('#plaisir').slideUp(1000);
+                        $('#evasion').slideUp(1000);
+                        
+                        $('#decouverte').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+
+                    });
+
+                    $('#srelaxant').click(function(){
+                                        
+                        $('#detente').slideUp(1000);
+                        $('#decouverte').slideUp(1000);
+                        $('#plaisir').slideUp(1000);
+                        $('#evasion').slideUp(1000);
+                        
+                        $('#relaxant').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+
+                    });
+
+                    $('#splaisir').click(function(){
+                                        
+                        $('#detente').slideUp(1000);
+                        $('#decouverte').slideUp(1000);
+                        $('#relaxant').slideUp(1000);
+                        $('#evasion').slideUp(1000);
+                        
+                        $('#plaisir').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+
+                    });
+
+                    $('#sevasion').click(function(){
+                                        
+                        $('#detente').slideUp(1000);
+                        $('#decouverte').slideUp(1000);
+                        $('#relaxant').slideUp(1000);
+                        $('#plaisir').slideUp(1000);
+                        
+                        $('#evasion').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+
+                    });
+
+                    $('#toutspa').click(function(){
+                    
+                        $('#detente').slideDown(1000);
+                        $('#decouverte').slideDown(1000);
+                        $('#relaxant').slideDown(1000);
+                        $('#plaisir').slideDown(1000);
+                        $('#evasion').slideDown(1000);
+
+                        $('html, body').animate({
+                            scrollTop: $("#menuspa").offset().top - 90
+                          }, 1000);
+                    });
+
+
+                    /* Avis */
+
+                    $('#hotelavis').click(function(){
+                        $('.hotel').slideDown(1000);
+                        $('.spa').slideUp(1000);
+                        $('.restaurant').slideUp(1000);
+                        $('html, body').animate({
+                            scrollTop: $("#menuavis").offset().top - 90
+                          }, 1000);
+                    });
+
+                    $('#spaavis').click(function(){
+
+                        $('.spa').slideDown(1000);
+
+                        $('.hotel').slideUp(1000);
+                        $('.restaurant').slideUp(1000);
+                        $('html, body').animate({
+                            scrollTop: $("#menuavis").offset().top - 90
+                          }, 1000);
+                    });
+
+                    $('#restaurantavis').click(function(){
+
+                        $('.restaurant').slideDown(1000);
+
+                        $('.hotel').slideUp(1000);
+                        $('.spa').slideUp(1000);
+                        $('html, body').animate({
+                            scrollTop: $("#menuavis").offset().top - 90
+                          }, 1000);
+                    });
+
+                    $('#toutavis').click(function(){
+
+                        $('.restaurant').slideDown(1000);
+                        $('.hotel').slideDown(1000);
+                        $('.spa').slideDown(1000);
+                        $('html, body').animate({
+                            scrollTop: $("#menuavis").offset().top - 90
+                          }, 1000);
+                    });
+
+                    /* Paypal */
+                    $('#credit').click(function(){
+                    $('#payment-pp').slideUp(1000);
+                        $('#payment-cc').slideDown(1000);
+                        
+                    });
+                    $('#paypal').click(function(){
+                    $('#payment-pp').slideDown(1000);
+                        $('#payment-cc').slideUp(1000);
+                    });
+
+                    $('.stop').carousel({
+                        interval: false
+                    }); 
+
+                    
+
+                    
+
+
+});
+
+
+
+
+
